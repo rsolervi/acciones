@@ -41,6 +41,7 @@ export class StocksComponent implements OnInit, OnChanges {
               return this.stocksApi.getStock(symbol).pipe(
                 map((s) => {
                   s.name = empresa;
+                  s.symbol = symbol;
                   return s;
                 })
               );

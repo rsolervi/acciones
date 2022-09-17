@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +30,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     AppRoutingModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ],
   exports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     AppRoutingModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ]
 })
 export class SharedModule { }

@@ -33,8 +33,8 @@ export class StockSearchComponent implements OnInit {
     }
     if (simbolos.indexOf(this.searchText) === -1) {
         simbolos.push(this.searchText);
+        this.storageService.saveData('symbols', simbolos);
+        this.savedSymbol.emit(this.searchText);
     }
-    this.storageService.saveData('symbols', simbolos);
-    this.savedSymbol.emit(this.searchText);
   }
 }
