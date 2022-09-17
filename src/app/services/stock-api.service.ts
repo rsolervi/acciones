@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Sentiment } from '../models/sentiment';
 import { Stock } from '../models/stock';
 
@@ -15,18 +16,8 @@ export class StockApiService {
   constructor(public http: HttpClient) { }
 
   public getStock(symbol: string): Observable<Stock> {
-    interface ApiStock {
-      c: number;
-      d: number;
-      p: number;
-      h: number;
-      l: number;
-      o: number;
-      pc: number;
-      t: number;
-    }
     return this.http.get(`${this.urlBase}/quote?symbol=${symbol}&token=${this.token}`).pipe(
-      map( (ob: ApiStock) => {
+      map( (ob: any) => {
         return {
           currentPrice: ob.c,
           change: ob.d,
@@ -41,18 +32,18 @@ export class StockApiService {
   }
 
   public getCompanyName(symbol: string): Observable<string>{
-    interface ApiCompany {
-      count: number;
-      result: {
-        description: string;
-        displaySymbol: string;
-        symbol: string;
-        type: string;
-      }[]
-    }
     return this.http.get(`${this.urlBase}/search?q=${symbol}&token=${this.token}`).pipe(
-      map( (ob: ApiCompany) => {
-        return ob.count > 0 ? (ob.result[0]).description : '';
+      map( (ob: any) => {
+        if(ob.count > 0){
+          const company = ob.result[0];
+          if(company.symbol === symbol){
+            return company.description;
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
       })
     )
   }

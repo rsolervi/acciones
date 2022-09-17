@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StockDetailComponent } from './components/stock-detail/stock-detail.component';
 import { StockTrackerModule } from './components/tracker/stock-tracker.module';
+import { SharedModule } from './shared/shared/shared.module';
 
 
 @NgModule({
@@ -12,8 +11,7 @@ import { StockTrackerModule } from './components/tracker/stock-tracker.module';
     StockDetailComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    SharedModule,
     StockTrackerModule
   ],
   providers: [],

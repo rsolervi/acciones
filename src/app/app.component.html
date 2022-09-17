@@ -1,3 +1,5 @@
-<stt-stock-search></stt-stock-search>
-<stt-stocks></stt-stocks>
+<div>
+  <stt-stock-search (savedSymbol)="onSavedSymbol($event)"></stt-stock-search>
+  <stt-stocks [newSymbols]="symbols"></stt-stocks>
+</div>
 <router-outlet></router-outlet>
