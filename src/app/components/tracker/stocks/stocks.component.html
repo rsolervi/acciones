@@ -1,1 +1,4 @@
-<stt-stock *ngFor="let item of data"></stt-stock>
+<div class="stocks">
+  <stt-stock *ngFor="let item of data" [data]="item"></stt-stock>
+</div>
+<div *ngIf="loading">Updating data... Please wait a short moment.</div>

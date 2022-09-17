@@ -36,4 +36,12 @@ export class LocalStorageService {
     localStorage.clear();
   }
 
+  public removeArrayElement(key: string, value: string){
+    const arr = this.getData(key, true );
+    if(Array.isArray(arr)){
+      arr.splice(arr.indexOf(value),1);
+      this.saveData(key, arr);
+    }
+  }
+
 }

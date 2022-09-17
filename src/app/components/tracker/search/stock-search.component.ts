@@ -26,6 +26,7 @@ export class StockSearchComponent implements OnInit {
   }
 
   private guardarSymbol() {
+    this.searchText = this.searchText.toUpperCase();
     let simbolos = this.storageService.getData('symbols', true);
     if(!Array.isArray(simbolos)){
       simbolos = [];

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Stock } from '../../../models/stock';
 
 @Component({
   selector: 'stt-stock',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock.component.scss']
 })
 export class StockComponent implements OnInit {
+
+  @Input() data?: Stock;
 
   constructor() { }
 
