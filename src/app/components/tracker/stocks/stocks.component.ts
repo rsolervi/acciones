@@ -1,9 +1,7 @@
 import {
-  Component,
-  Input,
+  Component, EventEmitter, Input,
   OnChanges,
-  OnInit,
-  SimpleChanges
+  OnInit, Output, SimpleChanges
 } from '@angular/core';
 import { forkJoin, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -18,6 +16,7 @@ import { Stock } from '../../../models/stock';
 })
 export class StocksComponent implements OnInit, OnChanges {
   @Input() newSymbols: string[] = [];
+  @Output() clickDeletedStock: EventEmitter<string> = new EventEmitter();
   symbols: string[] = [];
   data: Stock[] = [];
   loading: boolean = false;
@@ -37,7 +36,7 @@ export class StocksComponent implements OnInit, OnChanges {
       obsSimbolos.push(
         this.stocksApi.getCompanyName(symbol).pipe(
           switchMap((empresa: string) => {
-            if(empresa !== null){
+            if (empresa !== null) {
               return this.stocksApi.getStock(symbol).pipe(
                 map((s) => {
                   s.name = empresa;
@@ -46,7 +45,7 @@ export class StocksComponent implements OnInit, OnChanges {
                 })
               );
             } else {
-              this.storageService.removeArrayElement("symbols", symbol);
+              this.storageService.removeArrayElement('symbols', symbol);
               return of(null);
             }
           })
@@ -56,18 +55,26 @@ export class StocksComponent implements OnInit, OnChanges {
     if (obsSimbolos && obsSimbolos.length > 0) {
       this.loading = true;
       forkJoin(obsSimbolos).subscribe((res) => {
-          res.forEach(e => {
-            if(e !== null){
-              this.data.push(e);
-            }
-          });
-          //this.data = this.data.concat(res);
+        res.forEach((e) => {
+          if (e !== null) {
+            this.data.push(e);
+          }
+        });
+        //this.data = this.data.concat(res);
         this.loading = false;
       });
     }
   }
 
+  onClickDeleteCard(symbol: string) {
+    this.data = this.data.filter(s => {
+      return s.symbol !== symbol;
+    });
+    this.storageService.removeArrayElement('symbols', symbol);
+    this.clickDeletedStock.emit(symbol);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    this.getDataSymbols();
+      this.getDataSymbols();
   }
 }

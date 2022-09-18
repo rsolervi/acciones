@@ -24,4 +24,8 @@ export class StockTrackerComponent implements OnInit {
     }
   }
 
+  onDeletedStock(symbol:string){
+    this.symbols = this.symbols.filter(s => s !== symbol);
+  }
+
 }
