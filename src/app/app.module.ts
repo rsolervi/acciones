@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { StockDetailComponent } from './components/stock-detail/stock-detail.component';
 import { StockTrackerModule } from './components/tracker/stock-tracker.module';
-import { SharedModule } from './shared/shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({

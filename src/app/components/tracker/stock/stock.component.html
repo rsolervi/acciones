@@ -17,7 +17,7 @@
         <div>{{data?.openPrice | currency: "USD"}}</div>
       </div>
       <div class="dibujo">
-        <div>{{sube ? '&#129145;' : (sube === false ? '&#129147;' : '')}}</div>
+        <stt-arrow [up]="sube"></stt-arrow>
       </div>
       <div>
         <div class="title">Current price :</div>
@@ -31,7 +31,8 @@
       </div>
     </div>
     <div class="acciones">
-      <a mat-button color="primary" id="sentiment{{data?.symbol}}" routerLink="/sentiment/{{data?.symbol}}">See sentiment details</a>
+      <a mat-button color="primary" id="sentiment{{data?.symbol}}" routerLink="/sentiment/{{data?.symbol}}">See
+        sentiment details</a>
     </div>
   </mat-card-content>
 </mat-card>

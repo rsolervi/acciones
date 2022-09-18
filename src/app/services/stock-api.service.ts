@@ -48,8 +48,26 @@ export class StockApiService {
     )
   }
 
-  public getSentiment(symbol: string, from: Date, to: Date): Observable<Sentiment>{
-    return this.http.get<Sentiment>(`${this.urlBase}/stock/insider-sentiment?symbol=${symbol}&from=${from}&to=${to}&token=${this.token}`);
+  public getSentiment(symbol: string, from: Date, to: Date): Observable<Sentiment[]>{
+    const desde = this.formatDate(from);
+    const hasta = this.formatDate(to);
+    return this.http.get<any>(`${this.urlBase}/stock/insider-sentiment?symbol=${symbol}&from=${desde}&to=${hasta}&token=${this.token}`).pipe(
+      map( res => {
+        return res.data.map((d:any) => {
+          return {
+            symbol: d.symbol,
+            year: d.year,
+            month: d.month,
+            change: d.change,
+            mspr: d.mspr
+          } as Sentiment
+        })
+      })
+    );
+  }
+
+  private formatDate(d: Date){
+    return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2)+ "";
   }
 
 }
