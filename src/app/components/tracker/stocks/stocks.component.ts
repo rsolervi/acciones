@@ -75,6 +75,12 @@ export class StocksComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    const valores = changes.newSymbols;
+    if(valores.previousValue === undefined || (valores.previousValue !== undefined && valores.currentValue && valores.previousValue.indexOf(valores.currentValue[0]) === -1 )){
       this.getDataSymbols();
+    }
+   // if(changes.newSymbols.currentValue.length > changes.newSymbols.previousValue.length){
+
+   // }
   }
 }

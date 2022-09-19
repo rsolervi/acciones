@@ -1,8 +1,8 @@
 :host{
-  height: 100%;
-  width: 100%;
+  min-width: 1024px;
   display: inline-flex;
   flex-direction: column;
+  align-self: center;
   padding: 20px;
   align-items: center;
   background-color: #CDD5E9;

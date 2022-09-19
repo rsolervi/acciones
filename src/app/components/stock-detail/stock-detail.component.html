@@ -1,11 +1,11 @@
 <mat-card>
   <mat-card-content>
+    <div class="header">
+      <div class="symbol">{{symbol}}</div>
+      <div class="name">{{empresa}}</div>
+    </div>
     <div class="loading" *ngIf="loading">Collecting data... Please wait a short moment.</div>
     <div *ngIf="!loading">
-      <div class="header">
-        <div class="symbol">{{symbol}}</div>
-        <div class="name">{{empresa}}</div>
-      </div>
       <div class="info">
       <div class="info-mes" *ngFor="let s of data; let i=index" [ngStyle]="{'border-right': i<2 && (i+1)!==data?.length ? '1px solid gray' : '0' }">
           <div class="mes">{{s.month | month}} {{s.year}}</div>

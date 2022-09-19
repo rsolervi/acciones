@@ -6,11 +6,22 @@
   width: 100%;
   height: 100%;
   background-color: #CDD5E9;
+  text-align: left;
   mat-card{
     width: 70%;
     height: 150px;
     max-width: 800px;
     border-radius: 15px;
+    mat-card-content{
+      height: 100%;
+    }
+    .loading{
+      height: 100%;
+      width: 100%;
+      display: inline-flex;
+      padding: 30px;
+      justify-content: center;
+    }
     .header{
       display: inline-flex;
       justify-content: stretch;
