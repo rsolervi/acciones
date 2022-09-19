@@ -14,11 +14,12 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ArrowComponent } from '../components/shared/arrow/arrow.component';
 import { MonthPipe } from '../components/shared/month.pipe';
+import { PositivePipe } from '../components/shared/positive.pipe';
 
 
 
 @NgModule({
-  declarations: [ArrowComponent, MonthPipe],
+  declarations: [ArrowComponent, MonthPipe, PositivePipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -51,7 +52,8 @@ import { MonthPipe } from '../components/shared/month.pipe';
     HttpClientModule,
     MatGridListModule,
     ArrowComponent,
-    MonthPipe
+    MonthPipe,
+    PositivePipe
   ]
 })
 export class SharedModule { }
