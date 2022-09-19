@@ -70,6 +70,8 @@
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto auto;
+          font-size: 12px;
+          margin-top: 5px;
         }
         .dibujo{
           grid-row-start: 1;
