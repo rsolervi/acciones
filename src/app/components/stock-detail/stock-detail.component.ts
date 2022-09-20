@@ -47,8 +47,11 @@ export class StockDetailComponent implements OnInit {
         this.data = res;
         this.data = this.completarDatos(this.data);
       }
+    }, (err) =>{
+      console.error(err);
+    }, () => {
       this.loading = false;
-    })
+    });
   }
   completarDatos(data: Sentiment[]) {
     const dates = [new Date(), new Date(new Date().setMonth(new Date().getMonth() - 1 )), new Date(new Date().setMonth(new Date().getMonth() - 2 ))];
@@ -72,21 +75,24 @@ export class StockDetailComponent implements OnInit {
         } as Sentiment)
       }
     }
+    return this.ordenarDatos(data);
+  }
+
+  private ordenarDatos(data: Sentiment[]) {
     data.sort((a, b) => {
-      a.year <= b.year
-      if(a.year == b.year) {
-        if(a.month <= b.month) {
+      if (a.year == b.year) {
+        if (a.month <= b.month) {
           return -1;
         } else {
           return 1;
         }
       }
-      if(a.year < b.year) {
+      if (a.year < b.year) {
         return -1;
       }
       return 1;
-     });
-     return data;
+    });
+    return data;
   }
 
   back(){

@@ -60,7 +60,9 @@ export class StocksComponent implements OnInit, OnChanges {
             this.data.push(e);
           }
         });
-        //this.data = this.data.concat(res);
+      }, (err) =>{
+        console.error(err);
+      }, () => {
         this.loading = false;
       });
     }
